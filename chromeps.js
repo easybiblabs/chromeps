@@ -1,4 +1,4 @@
-var chromeps = (function() {
+module.exports = (function() {
   
   var privateTabId = null;
   var callbacks = {};
