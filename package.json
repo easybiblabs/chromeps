@@ -1,0 +1,19 @@
+{
+  "name": "chromeps",
+  "version": "0.1.0",
+  "description": "Simple pubsub implementation for Chrome extensions, with a few extra features.",
+  "main": "chromeps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sashless/chromeps.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sashless/chromeps/issues"
+  },
+  "homepage": "https://github.com/sashless/chromeps"
+}
