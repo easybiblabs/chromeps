@@ -123,7 +123,12 @@ module.exports = (function() {
 
   privateRegisterListener();
 
+  function unregisterByFilter(filter) {
+    delete callbacks[filter];
+  }
+
   return {
+    unregisterByFilter: unregisterByFilter,
     publish: publicPublish,
     publishActive: publicPublishActive,
     publishSame: publicPublishSame,
