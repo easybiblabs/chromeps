@@ -1,5 +1,5 @@
 module.exports = (function() {
-  
+
   var privateTabId = null;
   var callbacks = {};
 
@@ -73,11 +73,10 @@ module.exports = (function() {
       }
 
       if (callbacks[message.filter]) {
-        for (var i=0; i<callbacks[message.filter].length; i+=1) {
-          callbacks[message.filter][i](message.content);
-        }
+        callbacks[message.filter].forEach(function(value) {
+          value(message.content);
+        });
       }
-
     });
   }
 
@@ -123,12 +122,21 @@ module.exports = (function() {
 
   privateRegisterListener();
 
-  function unregisterByFilter(filter) {
-    delete callbacks[filter];
+  function unsubscribe(filter, callback) {
+    if(!callbacks[filter] || !callbacks[filter].length){
+      throw new Error('Nothing registered for filter ' + filter);
+    }
+
+    var index = callbacks[filter].indexOf(callback);
+    if(index === -1){
+      throw new Error('Callback not registered for filter ' + filter);
+    }
+
+    delete callbacks[filter][index];
   }
 
   return {
-    unregisterByFilter: unregisterByFilter,
+    unsubscribe: unsubscribe,
     publish: publicPublish,
     publishActive: publicPublishActive,
     publishSame: publicPublishSame,
