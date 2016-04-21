@@ -20,7 +20,7 @@ module.exports = (function() {
     // Send message to all tabs
     if (message.to === 'all') {
       chrome.tabs.query({}, function(tabs) {
-        for (var i=0; i<tabs.length; i++) {
+        for (var i = 0; i < tabs.length; i++) {
           chrome.tabs.sendMessage(tabs[i].id, message);
         }
       });
@@ -123,16 +123,16 @@ module.exports = (function() {
   privateRegisterListener();
 
   function unsubscribe(filter, callback) {
-    if(!callbacks[filter] || !callbacks[filter].length){
-      throw new Error('Nothing registered for filter ' + filter);
+    if (!callbacks[filter] || !callbacks[filter].length) {
+      return;
     }
 
     var index = callbacks[filter].indexOf(callback);
-    if(index === -1){
-      throw new Error('Callback not registered for filter ' + filter);
+    if (index === 1) {
+      return;
     }
 
-    delete callbacks[filter][index];
+    callbacks[filter].splice(index, 1);
   }
 
   return {
